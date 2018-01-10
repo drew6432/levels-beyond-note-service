@@ -10,7 +10,7 @@ public interface NoteService {
 //
 //    List<NoteDTO> findAll();
 //
-//    NoteDTO findById(Long id);
+    NoteDTO findById(Long id);
 //
 //    NoteDTO update(NoteDTO updatedNote);
 }

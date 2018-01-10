@@ -3,7 +3,7 @@ package com.codingAssessment.myapplication.note;
 
 final class NoteMapper {
 
-    static Note mapToEntity(NoteDTO dto) {
+    static Note mapDTOToEntity(NoteDTO dto) {
         if (dto == null) {
             return null;
         }
