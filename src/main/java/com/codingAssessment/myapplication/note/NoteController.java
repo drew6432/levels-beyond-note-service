@@ -35,7 +35,7 @@ public class NoteController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    List<NoteDTO> findAll(@RequestParam(value="body", required=false) Optional<String> searchString) {
+    List<NoteDTO> findAll(@RequestParam(value="query", required=false) Optional<String> searchString) {
         List<NoteDTO> todoEntries = noteService.findAll(searchString);
         return todoEntries;
     }

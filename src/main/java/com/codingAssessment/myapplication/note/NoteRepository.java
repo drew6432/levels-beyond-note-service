@@ -16,4 +16,6 @@ public interface NoteRepository extends Repository<Note, Long> {
     Note save(Note persisted);
 
     List<Note> findByBodyContaining(String searchString);
+
+    void flush();
 }

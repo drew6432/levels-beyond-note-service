@@ -61,7 +61,11 @@ public class NoteServiceImpl implements NoteService {
     @Transactional
     @Override
     public NoteDTO update(NoteDTO updatedNote) {
-        return null;
+        Note updated = findTodoEntryById(updatedNote.getId());
+        updated.setBody(updatedNote.getBody());
+
+        repository.flush();
+        return NoteMapper.mapEntityToDTO(updated);
     }
 
     private Note findTodoEntryById(Long id) {
