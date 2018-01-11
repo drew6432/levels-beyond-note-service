@@ -13,8 +13,12 @@ import java.util.Optional;
 @RequestMapping("/api/notes")
 public class NoteController {
 
+    private final NoteService noteService;
+
     @Autowired
-    private NoteService noteService;
+    NoteController(NoteService noteService) {
+        this.noteService = noteService;
+    }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public NoteDTO findById(@PathVariable("id") Long id) {

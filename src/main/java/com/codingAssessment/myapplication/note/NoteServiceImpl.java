@@ -42,11 +42,7 @@ public class NoteServiceImpl implements NoteService {
     public List<NoteDTO> findAll(Optional<String> opt) {
         List<Note> todoEntries;
 
-        if (opt.isPresent()) {
-            todoEntries = repository.findByBodyContaining(opt.get());
-        } else {
-            todoEntries =repository.findAll();
-        }
+        todoEntries = opt.map(repository::findByBodyContaining).orElseGet(repository::findAll);
 
         return NoteMapper.mapEntitiesIntoDTOs(todoEntries);
     }
