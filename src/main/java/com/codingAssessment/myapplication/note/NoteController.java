@@ -5,35 +5,49 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.Optional;
 
 
 @RestController
 @RequestMapping("/api/notes")
 public class NoteController {
 
-    @Autowired
-    private NoteService noteService;
-//    @Autowired
-//    private NoteMapper mapper;
+    private final NoteService noteService;
 
-//    @GET
-//    @Path("/{id}")
-//    public NoteDTO getNote(@PathParam("id") String id) {
-////        log.info("Retrieving entity with id {}", id);
-//        Note noteEntity = noteService.getNote(id);
-//        NoteDTO noteDTO = mapper.mapToDto(noteEntity);
-////        log.info("Entity with id {} retrieved successfully", id);
-//        return noteDTO;
-//    }
+    @Autowired
+    NoteController(NoteService noteService) {
+        this.noteService = noteService;
+    }
+
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
+    public NoteDTO findById(@PathVariable("id") Long id) {
+        NoteDTO noteDTO = noteService.findById(id);
+        return noteDTO;
+    }
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public NoteDTO create(@RequestBody @Valid NoteDTO noteDTO) {
-//        log.info("Retrieving entity with id {}", id);
-
         return noteService.create(noteDTO);
-//        log.info("Entity with id {} retrieved successfully", id);
-//        return noteDTO;
+    }
+
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+    public NoteDTO delete(@PathVariable("id") Long id) {
+        NoteDTO deleted = noteService.delete(id);
+        return deleted;
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    List<NoteDTO> findAll(@RequestParam(value="query", required=false) Optional<String> searchString) {
+        List<NoteDTO> todoEntries = noteService.findAll(searchString);
+        return todoEntries;
+    }
+
+    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
+    NoteDTO update(@RequestBody @Valid NoteDTO updatedTodoEntry) {
+        NoteDTO updated = noteService.update(updatedTodoEntry);
+        return updated;
     }
 }
 
