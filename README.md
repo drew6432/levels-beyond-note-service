@@ -16,3 +16,7 @@ Levels Beyond coding assessment
  - Note service is running at http://localhost:8080/api/notes
  
  - example POST `curl -i -H "Content-Type: application/json" -X POST -d '{"body" : "Pick up milk!"}' http://localhost:8080/api/notes`
+
+# Things I would improve 
+- add more unit tests 
+- add functional tests
