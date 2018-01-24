@@ -1,9 +1,8 @@
-# levels-beyond-note-service
-Levels Beyond coding assessment
+# Note-service-example
 
 # Running Locally (run the following commands in your terminal)
- - `git clone https://github.com/drew6432/levels-beyond-note-service.git`
- - `cd levels-beyond-note-service`
+ - `git clone https://github.com/drew6432/note-service-example.git`
+ - `cd note-service-example`
  - `mvn clean install`
  - `mvn spring-boot:run`
  
